@@ -235,6 +235,11 @@ type Container struct {
 	Artifact_count int
 }
 
+type Response struct {
+	ID int `json:"id"`
+	Success bool `json:"success"` 
+}
+
 // GetPage from url and return body as string
 func GetPage(url, user, pass string) ([]byte, error) {
 	tr := &http.Transport{

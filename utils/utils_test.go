@@ -5,6 +5,7 @@ import (
 	"fmt"
 	//"os"
 	"flag"
+	"encoding/json"
 )
 
 var (
@@ -36,5 +37,9 @@ func TestPostPage(t *testing.T) {
 	data, _ := PostPage("https://10.34.1.110/rest/container", *user, *pass, container)
 		
 	fmt.Println(string(data))
+	var response Response
+	json.Unmarshal(data, &response)
+	fmt.Printf("id %d:\n", response.ID)
+	//data, _ := PostPage("https://10.34.1.110/rest/artifact", *user, *pass, artifact)
 
 }

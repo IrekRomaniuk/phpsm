@@ -49,7 +49,7 @@ func main() {
 	//url="https://tap-api-v2.proofpoint.com/v2/siem/all"
 	data, _ := utils.GetPage("https://tap-api-v2.proofpoint.com/v2/siem/all?format=JSON&sinceSeconds=600", 
 		*USER, *PASS)
-	json.Unmarshal(data, &message)
+	json.Unmarshal(data, &message)  // err:=
 	fmt.Printf("QueryEndTime: %s\nMessagesDelivered: %v\nMessagesBlocked: %v\nClicksPermitted: %v\nClicksBlocked: %v\n", 
 		message.QueryEndTime, message.MessagesDelivered, message.MessagesBlocked,
 		message.ClicksPermitted, message.ClicksBlocked)
