@@ -269,7 +269,7 @@ func PostPage(url, user, pass string, data Container) ([]byte, error) {
 	}
 	client := &http.Client{Transport: tr}
 	body := new(bytes.Buffer)
-	json.NewEncoder(body).Encode(data)	
+	json.NewEncoder(body).Encode(data)  // err:=	
 	req, err := http.NewRequest("POST", url, body)
 	req.SetBasicAuth(user, pass)
 	//req.Header.Set("ph-auth-token", token)
