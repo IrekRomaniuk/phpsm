@@ -10,21 +10,21 @@ import (
 )
 //Clicks https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
 type Clicks []struct {
-	URL            string   
-	Classification string  
-	ClickTime      time.Time 
-	ThreatTime     time.Time 
-	UserAgent      string    
-	CampaignID     string    
-	ClickIP        string   
-	Sender         string   
-	Recipient      string   
-	SenderIP       string    
-	GUID           string   
-	ThreatID       string   
-	ThreatURL      string   
-	ThreatStatus   string   
-	MessageID      string   
+	URL            string    `json:"url"`
+	Classification string    `json:"classification"`
+	ClickTime      time.Time `json:"clickTime"`
+	ThreatTime     time.Time `json:"threatTime"`
+	UserAgent      string    `json:"userAgent"`
+	CampaignID     string    `json:"campaignId"`
+	ClickIP        string    `json:"clickIP"`
+	Sender         string    `json:"sender"`
+	Recipient      string    `json:"recipient"`
+	SenderIP       string    `json:"senderIP"`
+	GUID           string    `json:"GUID"`
+	ThreatID       string    `json:"threatID"`
+	ThreatURL      string    `json:"threatURL"`
+	ThreatStatus   string    `json:"threatStatus"`
+	MessageID      string    `json:"messageID"`
 } 
 //Messages https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
 type Messages []struct {
@@ -44,7 +44,7 @@ type Messages []struct {
 	ImpostorScore    float64       `json:"impostorScore"`
 	MalwareScore     int           `json:"malwareScore"`
 	Cluster          string        `json:"cluster"`
-	Subject          interface{}   `json:"subject"`
+	Subject          string        `json:"subject"`
 	QuarantineFolder interface{}   `json:"quarantineFolder"`
 	QuarantineRule   interface{}   `json:"quarantineRule"`
 	PolicyRoutes     []string      `json:"policyRoutes"`
@@ -128,7 +128,7 @@ type Message struct {
 		ImpostorScore    float64       `json:"impostorScore"`
 		MalwareScore     int           `json:"malwareScore"`
 		Cluster          string        `json:"cluster"`
-		Subject          interface{}   `json:"subject"`
+		Subject          string  	   `json:"subject"`
 		QuarantineFolder interface{}   `json:"quarantineFolder"`
 		QuarantineRule   interface{}   `json:"quarantineRule"`
 		PolicyRoutes     []string      `json:"policyRoutes"`
@@ -175,7 +175,7 @@ type Message struct {
 		ImpostorScore    float64       `json:"impostorScore"`
 		MalwareScore     int           `json:"malwareScore"`
 		Cluster          string        `json:"cluster"`
-		Subject          interface{}   `json:"subject"`
+		Subject          string        `json:"subject"`
 		QuarantineFolder interface{}   `json:"quarantineFolder"`
 		QuarantineRule   interface{}   `json:"quarantineRule"`
 		PolicyRoutes     []string      `json:"policyRoutes"`
