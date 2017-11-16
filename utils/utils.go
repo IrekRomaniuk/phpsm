@@ -16,6 +16,73 @@ import (
 	ClicksPermitted []interface{} `json:"clicksPermitted"`
 	ClicksBlocked []interface{} `json:"clicksBlocked"`
 }*/
+
+type Clicks []struct {
+	URL            string   
+	Classification string  
+	ClickTime      time.Time 
+	ThreatTime     time.Time 
+	UserAgent      string    
+	CampaignID     string    
+	ClickIP        string   
+	Sender         string   
+	Recipient      string   
+	SenderIP       string    
+	GUID           string   
+	ThreatID       string   
+	ThreatURL      string   
+	ThreatStatus   string   
+	MessageID      string   
+} 
+
+type Messages []struct {
+	SpamScore      int `json:"spamScore"`
+	PhishScore     int `json:"phishScore"`
+	ThreatsInfoMap []struct {
+		ThreatID       string      `json:"threatID"`
+		ThreatStatus   string      `json:"threatStatus"`
+		Classification string      `json:"classification"`
+		ThreatURL      string      `json:"threatUrl"`
+		ThreatTime     time.Time   `json:"threatTime"`
+		Threat         string      `json:"threat"`
+		CampaignID     interface{} `json:"campaignID"`
+		ThreatType     string      `json:"threatType"`
+	} `json:"threatsInfoMap"`
+	MessageTime      time.Time     `json:"messageTime"`
+	ImpostorScore    float64       `json:"impostorScore"`
+	MalwareScore     int           `json:"malwareScore"`
+	Cluster          string        `json:"cluster"`
+	Subject          interface{}   `json:"subject"`
+	QuarantineFolder interface{}   `json:"quarantineFolder"`
+	QuarantineRule   interface{}   `json:"quarantineRule"`
+	PolicyRoutes     []string      `json:"policyRoutes"`
+	ModulesRun       []string      `json:"modulesRun"`
+	MessageSize      int           `json:"messageSize"`
+	HeaderFrom       string        `json:"headerFrom"`
+	HeaderReplyTo    interface{}   `json:"headerReplyTo"`
+	FromAddress      []string      `json:"fromAddress"`
+	CcAddresses      []interface{} `json:"ccAddresses"`
+	ReplyToAddress   []interface{} `json:"replyToAddress"`
+	ToAddresses      []string `json:"toAddresses"`
+	Xmailer          interface{}   `json:"xmailer"`
+	MessageParts     []struct {
+		Disposition   string `json:"disposition"`
+		Sha256        string `json:"sha256"`
+		Md5           string `json:"md5"`
+		Filename      string `json:"filename"`
+		SandboxStatus string `json:"sandboxStatus"`
+		OContentType  string `json:"oContentType"`
+		ContentType   string `json:"contentType"`
+	} `json:"messageParts"`
+	CompletelyRewritten bool     `json:"completelyRewritten"`
+	QID                 string   `json:"QID"`
+	GUID                string   `json:"GUID"`
+	Sender              string   `json:"sender"`
+	Recipient           []string `json:"recipient"`
+	SenderIP            string   `json:"senderIP"`
+	MessageID           string   `json:"messageID"`
+} 
+
 type Message struct {
 	QueryEndTime      time.Time     `json:"queryEndTime"`
 	ClicksPermitted []struct {
@@ -80,7 +147,7 @@ type Message struct {
 		FromAddress      []string      `json:"fromAddress"`
 		CcAddresses      []interface{} `json:"ccAddresses"`
 		ReplyToAddress   []interface{} `json:"replyToAddress"`
-		ToAddresses      []interface{} `json:"toAddresses"`
+		ToAddresses      []string `json:"toAddresses"`
 		Xmailer          interface{}   `json:"xmailer"`
 		MessageParts     []struct {
 			Disposition   string `json:"disposition"`
@@ -128,7 +195,7 @@ type Message struct {
 		CcAddresses      []interface{} `json:"ccAddresses"`
 		ReplyToAddress   []interface{} `json:"replyToAddress"`
 		ToAddresses      []string      `json:"toAddresses"`
-		Xmailer          string        `json:"xmailer"`
+		Xmailer          interface{}   `json:"xmailer"`
 		MessageParts     []struct {
 			Disposition   string `json:"disposition"`
 			Sha256        string `json:"sha256"`
@@ -171,7 +238,7 @@ type Container struct {
 	Artifact_update_time time.Time
 	Container_update_time time.Time
 	Ingest_app_id string
-	Data interface{}
+	Data map[string]string
 	Artifact_count int
 }
 type Artifact struct {	
@@ -187,11 +254,11 @@ type Artifact struct {
 	Type string
 	Kill_chain string
 	Hash string
-	Cef interface{}
+	Cef map[string]string `json:"cef"`
 	Container int64 `json:"container_id"`
 	Description string `json:"description"`
 	Tags []string
-	Data interface{}
+	Data string `json:"data"`
 }
 type Response struct {
 	ID int64 `json:"id"`
