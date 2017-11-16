@@ -212,26 +212,26 @@ type Container struct {
 	Version string
 	Label string `json:"label"`
 	Name string `json:"name"`
-	Source_data_identifier string
+	Sourcedataidentifier string
 	Description string `json:"description"`
 	Status string
 	Sensitivity string
 	Severity string
-	Create_time time.Time
-	Start_time time.Time
-	End_time time.Time
-	Due_time time.Time
-	Close_time time.Time
-	Kill_chain string
+	Createtime time.Time
+	Starttime time.Time
+	Endtime time.Time
+	Duetime time.Time
+	Closetime time.Time
+	Killchain string
 	Owner string
 	Hash string
 	Tags []string
-	Asset_name string
-	Artifact_update_time time.Time
-	Container_update_time time.Time
-	Ingest_app_id string
+	Assetname string
+	Artifactupdatetime time.Time
+	Containerupdatetime time.Time
+	Ingestappid string
 	Data map[string]string
-	Artifact_count int
+	Artifactcount int
 }
 //Artifact Phantom
 type Artifact struct {	
@@ -239,13 +239,13 @@ type Artifact struct {
 	Version int
 	Name string `json:"name"`
 	Label string `json:"label"`
-	Source_data_identifier string `json:"source_data_identifier"`
-	Create_time time.Time
-	Start_time time.Time
-	End_time time.Time
+	Sourcedataidentifier string `json:"source_data_identifier"`
+	Createtime time.Time
+	Starttime time.Time
+	Endtime time.Time
 	Severity string
 	Type string
-	Kill_chain string
+	Killchain string
 	Hash string
 	Cef map[string]string `json:"cef"`
 	Container int64 `json:"container_id"`
@@ -267,6 +267,9 @@ func GetPage(url, user, pass string) ([]byte, error) {
 	client := &http.Client{Transport: tr}
 
 	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return []byte{}, err
+	}
     req.SetBasicAuth(user, pass)
 
 	resp, err := client.Do(req)
