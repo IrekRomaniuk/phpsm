@@ -1,4 +1,6 @@
-### Prrofpoint SIEM to Phantom
+## PHPSM
+### Proofpoint SIEM to Phantom
+#### REST API POST of Proofpoint SIEM messages to Phantom
 
 Parameters:
 
