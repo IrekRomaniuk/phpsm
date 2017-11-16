@@ -69,37 +69,7 @@ func main() {
 		os.Exit(0)
 	}
 	addMessageArtifcat(cID, message.MessagesDelivered, "MessagesDelivered")
-	addMessageArtifcat(cID, message.MessagesBlocked, "MessagesBlocked")
-	/*if !zero.IsZero(message.MessagesBlocked) {
-		fmt.Printf("MessagesBlocked: %d\n", len(message.MessagesBlocked))		
-		for i:=0; i < len(message.MessagesBlocked); i++ {			
-			//data, _ = json.Marshal(map[string]string{"HeaderFrom": message.MessagesBlocked[i].HeaderFrom})
-			//fmt.Println(string(data))
-			recipients := strings.Join(message.MessagesBlocked[i].Recipient, ",")
-			toAddresses := strings.Join(message.MessagesBlocked[i].ToAddresses, ",")
-			fromAddresses := strings.Join(message.MessagesBlocked[i].FromAddress, ",")
-			artifact := utils.Artifact{
-				Description: "Artifact added via REST API call",
-				Label: "proofpoint artifact",
-				Name: "MessagesBlocked " + strconv.Itoa(i+1),
-				Container: cID,
-				Data: "DATA",	
-				Cef: map[string]string{"sourceAddress": message.MessagesBlocked[i].SenderIP,
-					"suser": message.MessagesBlocked[i].Sender,
-					"toAddresses": toAddresses,
-					"fromAddresses": fromAddresses,
-					//"subject": message.MessagesBlocked[i].Subject,
-					"duser": recipients,
-					"externalId": message.MessagesBlocked[i].GUID,
-					"malwareScore": strconv.Itoa(message.MessagesBlocked[i].MalwareScore),
-					"phishScore": strconv.Itoa(message.MessagesBlocked[i].PhishScore),
-					"spamScore": strconv.Itoa(message.MessagesBlocked[i].SpamScore),
-					},			
-			}
-			aID, _ := utils.PostPage("https://10.34.1.110/rest/artifact", *USER, *PASS, artifact)
-			fmt.Printf("container id: %d artifact id: %d\n", cID, aID)
-		}				
-	}*/	
+	addMessageArtifcat(cID, message.MessagesBlocked, "MessagesBlocked")	
 }
 
 func addMessageArtifcat(cID int64, m utils.Messages, name string) {
