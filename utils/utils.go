@@ -9,14 +9,6 @@ import (
 	"encoding/json"
 )
 
-/*type Message struct {
-	QueryEndTime time.Time `json:"queryEndTime"`
-	MessagesDelivered []interface{} `json:"messagesDelivered"`
-	MessagesBlocked []interface{} `json:"messagesBlocked"`
-	ClicksPermitted []interface{} `json:"clicksPermitted"`
-	ClicksBlocked []interface{} `json:"clicksBlocked"`
-}*/
-
 type Clicks []struct {
 	URL            string   
 	Classification string  
@@ -214,7 +206,7 @@ type Message struct {
 		MessageID           string   `json:"messageID"`
 	} `json:"messagesBlocked"`
 }
-
+//Container Phantom
 type Container struct {
 	Id int64
 	Version string
@@ -241,6 +233,7 @@ type Container struct {
 	Data map[string]string
 	Artifact_count int
 }
+//Artifact Phantom
 type Artifact struct {	
 	Id int64
 	Version int
@@ -260,12 +253,13 @@ type Artifact struct {
 	Tags []string
 	Data string `json:"data"`
 }
+//Response from Phantom 
 type Response struct {
 	ID int64 `json:"id"`
 	Success bool `json:"success"` 
 }
 
-// GetPage from url and return body as string
+// GetPage from Proofpoint and return body as string
 func GetPage(url, user, pass string) ([]byte, error) {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
@@ -287,7 +281,7 @@ func GetPage(url, user, pass string) ([]byte, error) {
 	return htmlData, nil
 }
 
-// PostPage to url
+// PostPage to Phantom and return container id
 func PostPage(url, user, pass string, data interface{}) (int64, error) {
 	var response Response
 	tr := &http.Transport{
@@ -295,8 +289,14 @@ func PostPage(url, user, pass string, data interface{}) (int64, error) {
 	}
 	client := &http.Client{Transport: tr}
 	body := new(bytes.Buffer)
-	json.NewEncoder(body).Encode(data)  // err:=	
+	err := json.NewEncoder(body).Encode(data)
+	if err != nil {
+		return 0, err
+	}
 	req, err := http.NewRequest("POST", url, body)
+	if err != nil {
+		return 0, err
+	}
 	req.SetBasicAuth(user, pass)
 	//req.Header.Set("ph-auth-token", token)
 	req.Header.Set("Content-Type", "application/json")
