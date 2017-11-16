@@ -3,9 +3,7 @@ package utils
 import (
 	"testing"
 	"fmt"
-	//"os"
 	"flag"
-	"encoding/json"
 )
 
 var (
@@ -16,8 +14,8 @@ var (
 
 //TestGetPage : go test -run TestGetPage -args -u=user -p=pass
 func TestGetPage(t *testing.T) {
-	fmt.Printf("user: %s pass: %s", *user, *pass)
-	data, _ := GetPage("https://tap-api-v2.proofpoint.com/v2/siem/all?format=JSON&sinceSeconds=60", 
+	fmt.Printf("user: %s pass: %s\n", *user, *pass)
+	data, _ := GetPage("https://tap-api-v2.proofpoint.com/v2/siem/all?format=JSON&sinceSeconds=3600", 
 		*user, *pass)
 		
 	fmt.Println(string(data))
@@ -29,17 +27,19 @@ func TestPostPage(t *testing.T) {
 	container := Container{
 		Description: "Test container added via REST API call",
 		Label: "proofpoint",
-		Name: "test",
+		Name: "test Container",
 	}
 	/*var container = []byte(`{"description":"Test container added via REST API call", 
 		"label":"proofpoint", "name":"test"}`)*/
 	fmt.Printf("user: %s pass: %s\n", *user, *pass)
-	data, _ := PostPage("https://10.34.1.110/rest/container", *user, *pass, container)
-		
-	fmt.Println(string(data))
-	var response Response
-	json.Unmarshal(data, &response)
-	fmt.Printf("id %d:\n", response.ID)
-	//data, _ := PostPage("https://10.34.1.110/rest/artifact", *user, *pass, artifact)
-
+	ID, _ := PostPage("https://10.34.1.110/rest/container", *user, *pass, container)		
+	fmt.Printf("container id: %d\n", ID)	
+	artifact := Artifact{
+		Description: "Test artifact added via REST API call",
+		Label: "proofpoint artifact",
+		Name: "test Artifact",
+		Container: ID,
+	}
+	ID, _ = PostPage("https://10.34.1.110/rest/artifact", *user, *pass, artifact)
+	fmt.Printf("artifact id: %d\n", ID)
 }
