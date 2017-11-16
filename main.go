@@ -86,7 +86,7 @@ func addMessageArtifcat(cID int64, m utils.Messages, name string) {
 				Label: "proofpoint artifact",
 				Name: name + " " + strconv.Itoa(i+1),
 				Container: cID,
-				Data: "DATA",	
+				Data: "DATA",  // follow up required https://my.phantom.us/3.0/docs/rest	
 				Cef: map[string]string{"sourceAddress": m[i].SenderIP,
 					"suser": m[i].Sender,
 					"toAddresses": toAddresses,

@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"encoding/json"
 )
-
+//Clicks https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
 type Clicks []struct {
 	URL            string   
 	Classification string  
@@ -26,7 +26,7 @@ type Clicks []struct {
 	ThreatStatus   string   
 	MessageID      string   
 } 
-
+//Messages https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
 type Messages []struct {
 	SpamScore      int `json:"spamScore"`
 	PhishScore     int `json:"phishScore"`
@@ -74,7 +74,7 @@ type Messages []struct {
 	SenderIP            string   `json:"senderIP"`
 	MessageID           string   `json:"messageID"`
 } 
-
+//Message https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
 type Message struct {
 	QueryEndTime      time.Time     `json:"queryEndTime"`
 	ClicksPermitted []struct {
@@ -206,9 +206,9 @@ type Message struct {
 		MessageID           string   `json:"messageID"`
 	} `json:"messagesBlocked"`
 }
-//Container Phantom
+//Container Phantom https://my.phantom.us/3.0/docs/automation/containers
 type Container struct {
-	Id int64
+	ID int64
 	Version string
 	Label string `json:"label"`
 	Name string `json:"name"`
@@ -233,9 +233,9 @@ type Container struct {
 	Data map[string]string
 	Artifactcount int
 }
-//Artifact Phantom
+//Artifact Phantom https://my.phantom.us/3.0/docs/automation/artifacts
 type Artifact struct {	
-	Id int64
+	ID int64
 	Version int
 	Name string `json:"name"`
 	Label string `json:"label"`
