@@ -1,7 +1,7 @@
 ## PHPSM
 ### Proofpoint SIEM to Phantom
 #### REST API POST of Proofpoint SIEM messages to Phantom
-
+![Mission Control](./phpsm.PNG "Phantom Proofpoint")
 Parameters:
 
 ```
