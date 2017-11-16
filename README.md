@@ -1,5 +1,5 @@
 ## PHPSM
-### Proofpoint SIEM to Phantom
+### Proofpoint[SIEM](https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API) to [Phantom](https://my.phantom.us/3.0/docs/rest)
 #### REST API POST of Proofpoint SIEM messages to Phantom
 ![Mission Control](./phpsm.PNG "Phantom Proofpoint")
 Parameters:
