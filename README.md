@@ -1,5 +1,7 @@
 ### Phantom
 
+Parameters
+
 ```
 Copyright 2017 @IrekRomaniuk. All jdk-rights reversed.
 Usage:
@@ -19,3 +21,17 @@ Usage:
         Phantom username (default "admin")
   -v    Prints current version
   ```
+
+Example of use:
+
+```
+./phpsm_lin -sp=xxx -s=yyy -p='password' -sec=600
+MessagesDelivered: 5
+container id: 17959 artifact id: 96034
+container id: 17959 artifact id: 96035
+container id: 17959 artifact id: 96036
+container id: 17959 artifact id: 96037
+container id: 17959 artifact id: 96038
+MessagesBlocked: 1
+container id: 17959 artifact id: 96039
+```
